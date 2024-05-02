@@ -33,3 +33,21 @@
     margin: 1rem;
   }
 }
+
+@media (max-width: 479px) {
+  .grid > * {
+    flex-basis: 100%; /* Full width */
+  }
+}
+
+@media (min-width: 480px) and (max-width: 767px) {
+  .grid > * {
+    flex-basis: calc(50% - 2rem); /* Two items per row with margin */
+  }
+}
+
+@media (min-width: 768px) {
+  .grid > * {
+    flex-basis: calc(33.33% - 2rem); /* Three items per row with margin */
+  }
+}
