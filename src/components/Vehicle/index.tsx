@@ -15,13 +15,19 @@ type Props = {
   is_sold: boolean;
 };
 
+enum Condition {
+  new = "New",
+  used = "Second hand",
+  demo = "Dealer demo",
+}
+
 export default function Vehicle(props: Props) {
-  const { media, name, condition } = props;
+  const { media, name, condition, is_sold } = props;
 
   // TODO
   // `props.media` is an array. Find the media item with placement='featured'
-  const featuredMedia = "https://via.placeholder.com/1000x600";
-
+  const featuredMedia = media.find((item) => item.placement)?.src;
+  const soldTagLabel = is_sold ? "Sold" : "Available now";
   return (
     <div className={styles.vehicle}>
       <img className={styles.media} src={featuredMedia} alt="[alt]" />
@@ -34,8 +40,10 @@ export default function Vehicle(props: Props) {
         - used -> "Second hand"
         - demo -> "Dealer demo"
       */}
-      <Tag>{condition}</Tag>
-
+      <div className={styles.tags}>
+        <Tag>{Condition[condition]}</Tag>
+        <Tag>{soldTagLabel}</Tag>
+      </div>
       {/* TODO - Add another <Tag/> component which shows "Sold" or "Available now", depending on whether the vehicle's is_sold property is true/false (respectively) */}
     </div>
   );
